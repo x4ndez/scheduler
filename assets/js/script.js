@@ -1,3 +1,15 @@
+const s_currentDay = $("#currentDay");
+
+//Date
+//Format: Monday, December 13th
+let currentDay = dayjs();
+s_currentDay.text(currentDay.format("dddd, MMMM DD") + "th");
+
+//Present Time
+let presentTime = dayjs();
+let presentTime24Hr = dayjs().format("HH");
+console.log(presentTime.format("hhA"));
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
