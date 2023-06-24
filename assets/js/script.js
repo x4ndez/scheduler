@@ -18,7 +18,7 @@ let presentTime24Hr = Number(dayjs().format("HH"));
 
 for (let i = 0; i < 9; i++) {
 
-  let hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour"));
+  let hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour")); //Convert string to number
 
   if (hourAsNumberInLoop < presentTime24Hr) {
 
@@ -45,6 +45,30 @@ $("#page-up").on("click", function () {
   window.location = "#header";
 
 });
+
+//Pull and render from localStorage
+
+for (let i = 0; i < 9; i++) {
+
+  let storageVal = localStorage.getItem(i);
+  s_hourPeriod.children().eq(i).children().eq(1).val(storageVal);
+
+}
+
+//localStorage set on save
+
+for (let i = 0; i < 9; i++) {
+
+  s_hourPeriod.children().eq(i).children().eq(2).on("click", function () {
+
+    let inputVal = s_hourPeriod.children().eq(i).children().eq(1).val();
+
+    localStorage.setItem(i, inputVal);
+
+  });
+
+
+}
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
