@@ -74,9 +74,10 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  transition: transform 1s cubic-bezier(0, 0.5, 1, 0.5), background-color 1s ease-out;
 }
 
 .saveBtn i:hover {
   font-size: 20px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }

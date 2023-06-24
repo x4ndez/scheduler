@@ -84,16 +84,39 @@ $(function () {
 
   //localStorage set on save
 
+  const saveBtn = function (i) {
+    return s_hourPeriod.children().eq(i).children().eq(2);
+  };
+
   for (let i = 0; i < 9; i++) {
 
-    s_hourPeriod.children().eq(i).children().eq(2).on("click", function () {
+
+    saveBtn(i).on("click", function () {
 
       let inputVal = s_hourPeriod.children().eq(i).children().eq(1).val();
 
       localStorage.setItem(i, inputVal);
 
-    });
+      //Save button effect
 
+      saveBtn(i).css({
+        "background-color": "#ff6961",
+        "transform": "scale(1.1)",
+        "z-index": "1"
+      });
+
+      setTimeout(function () {
+
+        saveBtn(i).css({
+          "background-color": "#06aed5",
+          "transform": "scale(1.0)",
+          "z-index": "0"
+        });
+
+
+      }, 1000);
+
+    });
 
   }
 
