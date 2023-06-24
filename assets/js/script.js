@@ -11,22 +11,24 @@ let presentTime = dayjs();
 let presentTimePeriod = dayjs().format("hA");
 let presentTime24Hr = Number(dayjs().format("HH"));
 
-//for each hour
+//for each hour from 9-5...
 //-add past class IF it's less than the current time
 //-add present class IF it's equal to the current time
 //-add future class IF it's more than the current time
-for (let i = 0; i <= 23; i++) {
 
-  if (i < presentTime24Hr) {
+for (let i = 0; i <= 8; i++) {
 
-    // console.log(s_hourPeriod.children().eq(i));
+  let hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour"));
+
+  if (hourAsNumberInLoop < presentTime24Hr) {
+
     s_hourPeriod.children().eq(i).addClass("past");
 
-  } else if (i === presentTime24Hr) {
+  } else if (hourAsNumberInLoop === presentTime24Hr) {
 
     s_hourPeriod.children().eq(i).addClass("present");
 
-  } else if (i > presentTime24Hr) {
+  } else if (hourAsNumberInLoop > presentTime24Hr) {
 
     s_hourPeriod.children().eq(i).addClass("future");
 
