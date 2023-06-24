@@ -12,12 +12,13 @@ let presentTime24Hr = Number(dayjs().format("HH"));
 
 $(function () {
 
-  //Date
+  //Date render
   s_currentDay.text(currentDay.format("dddd, MMMM DD") + "th");
 
   //Move viewport to current hour
   //-IF the current hour is outside the hours of 9-5, then move viewport to the header
   //-IF the current hour is between 9-5, then move viewport to the current hour
+
   if (presentTime24Hr < 9 || presentTime24Hr > 17) {
 
     console.log(window.location = "#header");
@@ -36,19 +37,22 @@ $(function () {
 
   for (let i = 0; i < 9; i++) {
 
-    let hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour")); //Convert string to number
+    const hourAddClass = function (i, state) {
+      return s_hourPeriod.children().eq(i).addClass(state);
+    };
+    const hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour")); //Convert data-hour attribute string to number
 
     if (hourAsNumberInLoop < presentTime24Hr) {
 
-      s_hourPeriod.children().eq(i).addClass("past");
+      hourAddClass(i, "past"); // s_hourPeriod.children().eq(i).addClass("past");
 
     } else if (hourAsNumberInLoop === presentTime24Hr) {
 
-      s_hourPeriod.children().eq(i).addClass("present");
+      hourAddClass(i, "present"); // s_hourPeriod.children().eq(i).addClass("present");
 
     } else if (hourAsNumberInLoop > presentTime24Hr) {
 
-      s_hourPeriod.children().eq(i).addClass("future");
+      hourAddClass(i, "future");// s_hourPeriod.children().eq(i).addClass("future");
 
     }
 
