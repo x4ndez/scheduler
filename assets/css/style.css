@@ -12,6 +12,29 @@ textarea {
   padding: 10px;
 }
 
+#page-up {
+
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #d3d3d3;
+  cursor: pointer;
+
+  transition: background-color 1s;
+
+}
+
+#page-up:hover {
+
+  background-color: grey;
+
+}
+
 .description {
   white-space: pre-wrap;
 }

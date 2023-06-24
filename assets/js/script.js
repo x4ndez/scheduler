@@ -37,6 +37,13 @@ for (let i = 0; i <= 23; i++) {
 //Move to current hour
 window.location = "#hour-" + presentTime24Hr;
 
+//Page up event listener
+$("#page-up").on("click", function () {
+
+  window.location = "#header";
+
+});
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
