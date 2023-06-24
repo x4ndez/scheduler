@@ -16,7 +16,7 @@ let presentTime24Hr = Number(dayjs().format("HH"));
 //-add present class IF it's equal to the current time
 //-add future class IF it's more than the current time
 
-for (let i = 0; i <= 8; i++) {
+for (let i = 0; i < 9; i++) {
 
   let hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour"));
 
