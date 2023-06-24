@@ -21,12 +21,12 @@ $(function () {
 
   if (presentTime24Hr < 9 || presentTime24Hr > 17) {
 
-    console.log(window.location = "#header");
+    window.location = "#header";
 
   }
   else if (presentTime24Hr >= 9 && presentTime24Hr <= 17) {
 
-    console.log(window.location = "#hour-" + presentTime24Hr.toString());
+    window.location = "#hour-" + presentTime24Hr.toString();
 
   }
 
@@ -35,24 +35,32 @@ $(function () {
   //-add present class IF it's equal to the current time
   //-add future class IF it's more than the current time
 
+  const hourAddClass = function (i, state) {
+    return s_hourPeriod.children().eq(i).addClass(state);
+  };  //  Add class to timeblock.
+  //      Parameters:
+  //      (1) iterable passed from for loop.
+  //      (2) "past", "present" or "future".
+
+  const hourAsNumberInLoop = function (i) {
+    return Number(s_hourPeriod.children().eq(i).attr("data-hour"));
+  } //  Convert data-hour attribute string to number.
+  //    Parameters:
+  //    (1) iterable passed from for loop.
+
   for (let i = 0; i < 9; i++) {
 
-    const hourAddClass = function (i, state) {
-      return s_hourPeriod.children().eq(i).addClass(state);
-    };
-    const hourAsNumberInLoop = Number(s_hourPeriod.children().eq(i).attr("data-hour")); //Convert data-hour attribute string to number
-
-    if (hourAsNumberInLoop < presentTime24Hr) {
+    if (hourAsNumberInLoop(i) < presentTime24Hr) {
 
       hourAddClass(i, "past"); // s_hourPeriod.children().eq(i).addClass("past");
 
-    } else if (hourAsNumberInLoop === presentTime24Hr) {
+    } else if (hourAsNumberInLoop(i) === presentTime24Hr) {
 
       hourAddClass(i, "present"); // s_hourPeriod.children().eq(i).addClass("present");
 
-    } else if (hourAsNumberInLoop > presentTime24Hr) {
+    } else if (hourAsNumberInLoop(i) > presentTime24Hr) {
 
-      hourAddClass(i, "future");// s_hourPeriod.children().eq(i).addClass("future");
+      hourAddClass(i, "future"); // s_hourPeriod.children().eq(i).addClass("future");
 
     }
 
