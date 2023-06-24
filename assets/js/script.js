@@ -1,4 +1,5 @@
 const s_currentDay = $("#currentDay");
+const s_hourPeriod = $("#hours");
 
 //Date
 //Format: Monday, December 13th
@@ -7,8 +8,34 @@ s_currentDay.text(currentDay.format("dddd, MMMM DD") + "th");
 
 //Present Time
 let presentTime = dayjs();
-let presentTime24Hr = dayjs().format("HH");
-console.log(presentTime.format("hhA"));
+let presentTimePeriod = dayjs().format("hA");
+let presentTime24Hr = Number(dayjs().format("HH"));
+
+//for each hour
+//-add past class IF it's less than the current time
+//-add present class IF it's equal to the current time
+//-add future class IF it's more than the current time
+for (let i = 0; i <= 23; i++) {
+
+  if (i < presentTime24Hr) {
+
+    // console.log(s_hourPeriod.children().eq(i));
+    s_hourPeriod.children().eq(i).addClass("past");
+
+  } else if (i === presentTime24Hr) {
+
+    s_hourPeriod.children().eq(i).addClass("present");
+
+  } else if (i > presentTime24Hr) {
+
+    s_hourPeriod.children().eq(i).addClass("future");
+
+  }
+
+}
+
+//Move to current hour
+window.location = "#hour-" + presentTime24Hr;
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
